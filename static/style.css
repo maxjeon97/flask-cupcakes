@@ -1,0 +1,28 @@
+
+
+body{
+  padding: 80px
+}
+
+
+
+.add-cupcake-form{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.cupcake-header{
+display: flex;
+justify-content: center;
+align-items: center;
+padding-bottom: 20px;
+margin-top: -30px;
+}
+
+
+
+.add-cupcake-form:hover{
+  cursor: pointer;
+}
