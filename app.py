@@ -1,7 +1,7 @@
 """Flask app for Cupcakes"""
 import os
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 from models import db, Cupcake, connect_db
 
@@ -16,15 +16,26 @@ connect_db(app)
 
 app.config['SECRET_KEY'] = "I'LL NEVER TELL!!"
 
-# TODO: returns cupcakes-- add more specificity
+
+@app.get('/')
+def show_homepage():
+    """Shows homepage."""
+    return render_template('index.html')
+
+
 @app.get('/api/cupcakes')
 def list_all_cupcakes():
-    """returns JSON.
-    JSON {"cupcakes" : [{ "id": self.id,
-            "flavor": self.flavor,
-            "size": self.size,
-            "rating": self.rating,
-            "image_url": self.image_url}]}
+    """Returns JSON data containing list of all cupcake instances in database.
+    JSON {
+            "cupcakes":
+                [{
+                    "id": self.id,
+                    "flavor": self.flavor,
+                    "size": self.size,
+                    "rating": self.rating,
+                    "image_url": self.image_url
+                }, ... ]
+         }
     """
 
     cupcakes = Cupcake.query.all()
@@ -32,10 +43,10 @@ def list_all_cupcakes():
 
     return jsonify(cupcakes=serialized)
 
-# TODO: same issue with docstring
+
 @app.get('/api/cupcakes/<int:cupcake_id>')
 def list_single_cupcake(cupcake_id):
-    """returns JSON.
+    """Returns JSON data about a single cupcake based on cupcake_id in URL.
     JSON { "id": self.id,
             "flavor": self.flavor,
             "size": self.size,
@@ -48,10 +59,11 @@ def list_single_cupcake(cupcake_id):
 
     return jsonify(cupcake=serialized)
 
+
 @app.post('/api/cupcakes')
 def create_cupcake():
-    """given posted JSON data, returns:
-    JSON {cupcake: {id, flavor, size, rating, image_url}}
+    """Given posted JSON data, returns JSON data about created cupcake.
+    JSON { cupcake: {id, flavor, size, rating, image_url}}
     """
 
     flavor = request.json['flavor']
@@ -72,21 +84,36 @@ def create_cupcake():
     return (jsonify(cupcake=serialized), 201)
 
 
+@app.patch('/api/cupcakes/<int:cupcake_id>')
+def update_cupcake(cupcake_id):
+    """Given patched JSON data, edit the relevant records for a specified
+    cupcake. Returns JSON of edited cupcake
+    JSON { cupcake: {id, flavor, size, rating, image_url}}
+    """
+
+    cupcake = Cupcake.query.get_or_404(cupcake_id)
+
+    cupcake.flavor = request.json.get("flavor", cupcake.flavor)
+    cupcake.size = request.json.get("size", cupcake.size)
+    cupcake.rating = request.json.get("rating", cupcake.rating)
+    cupcake.image_url = request.json.get("image_url", cupcake.image_url)
+
+    db.session.commit()
+
+    serialized = cupcake.serialize()
+
+    return jsonify(cupcake=serialized)
 
 
+@app.delete('/api/cupcakes/<int:cupcake_id>')
+def delete_cupcake(cupcake_id):
+    """Deletes the cupcake that corresponds to the id in the URL.
+    Returns JSON { deleted: [cupcake-id]}
+    """
 
+    cupcake = Cupcake.query.get_or_404(cupcake_id)
 
+    db.session.delete(cupcake)
+    db.session.commit()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return jsonify(deleted=cupcake_id)
