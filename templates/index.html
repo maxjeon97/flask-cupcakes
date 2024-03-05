@@ -17,16 +17,16 @@
   </ul>
 
   <h1 class="cupcake-header">Add New Cupcake!</h1>
-  <form class="add-cupcake-form" action="/api/cupcakes" method="POST">
+  <form class="add-cupcake-form">
 
     <label for="flavor">Flavor</label>
-    <input type="text" class="form-control" name="flavor" id="flavor">
+    <input type="text" class="form-control" name="flavor" id="flavor" required>
 
     <label for="size">Size</label>
-    <input type="text" class="form-control" name="size" id="size">
+    <input type="text" class="form-control" name="size" id="size" required>
 
     <label for="rating">Rating</label>
-    <input type="text" class="form-control" name="rating" id="rating">
+    <input type="text" class="form-control" name="rating" id="rating" required>
 
     <label for="image-url">Image Link</label>
     <input type="text" class="form-control" name="image-url" id="image-url">

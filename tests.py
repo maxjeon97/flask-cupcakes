@@ -145,3 +145,11 @@ class CupcakeViewsTestCase(TestCase):
             resp_get = client.get(url)
 
             self.assertEqual(resp_get.status_code, 404)
+
+    def test_delete_cupcake_404(self):
+        """Tests that 404 is returned when cupcake does not exist"""
+        with app.test_client() as client:
+            url = f"/api/cupcakes/9999999"
+            resp = client.delete(url)
+
+            self.assertEqual(resp.status_code, 404)

@@ -1,28 +1,35 @@
-
-
-body{
+body {
   padding: 80px
 }
 
-
-
-.add-cupcake-form{
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
+.add-cupcake-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-.cupcake-header{
-display: flex;
-justify-content: center;
-align-items: center;
-padding-bottom: 20px;
-margin-top: -30px;
+.cupcake-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
 }
 
-
-
-.add-cupcake-form:hover{
+.add-cupcake-form:hover {
   cursor: pointer;
+}
+
+.cupcake-img {
+  max-width: 250px;
+  max-height: 250px;
+  margin-top: 12px;
+}
+
+.cupcake-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 20px;
 }

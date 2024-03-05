@@ -66,10 +66,10 @@ def create_cupcake():
     JSON { cupcake: {id, flavor, size, rating, image_url}}
     """
 
-    flavor = request.json['flavor']
-    size = request.json['size']
-    rating = request.json['rating']
-    image_url = request.json['image_url'] or None
+    flavor = request.json["flavor"]
+    size = request.json["size"]
+    rating = request.json["rating"]
+    image_url = request.json["image_url"] or None
 
     new_cupcake = Cupcake(flavor=flavor,
                           size=size,
