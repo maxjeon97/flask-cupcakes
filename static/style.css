@@ -1,18 +1,10 @@
 body {
-  padding: 80px
-}
-
-.add-cupcake-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 40px;
 }
 
 .cupcake-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-bottom: 20px;
 }
 
@@ -23,13 +15,14 @@ body {
 .cupcake-img {
   max-width: 250px;
   max-height: 250px;
-  margin-top: 12px;
+  margin-top: 4px;
+  margin-bottom: 30px;
+}
+
+.cupcake-img:hover {
+  cursor: pointer;
 }
 
 .cupcake-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   padding-bottom: 20px;
 }

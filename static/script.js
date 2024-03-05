@@ -16,7 +16,6 @@ function generateHtmlMarkup(cupcake) {
     <li>
       Flavor: ${cupcake.flavor}, Size: ${cupcake.size}, Rating: ${cupcake.rating}
     </li>
-    <br>
     <img class="cupcake-img" src="${cupcake.image_url}" alt="cupcake-image">
   </div>`);
 }
@@ -79,6 +78,25 @@ async function addNewCupcake(evt) {
 }
 
 $cupcakeForm.on('submit', addNewCupcake);
+
+
+/**
+ * Handles deletion of a cupcake on image click
+ */
+async function deleteCupcake(evt) {
+
+  const $evtTarget = $(evt.target);
+  const $cupcake = $evtTarget.closest('div');
+  const cupcakeId = $cupcake.data('id');
+
+  await fetch(`${ALL_CUPCAKES_API_ENDPOINT}/${cupcakeId}`, {
+    method: 'DELETE'
+  });
+
+  $cupcake.remove();
+}
+
+$('.cupcake-list').on('click', '.cupcake-img', deleteCupcake);
 
 
 /**
