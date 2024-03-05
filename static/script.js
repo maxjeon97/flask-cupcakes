@@ -13,8 +13,9 @@ function generateHtmlMarkup(cupcake) {
 
   return $(`
   <div data-id=${cupcake.id}>
-    <li>
-      Flavor: ${cupcake.flavor}, Size: ${cupcake.size}, Rating: ${cupcake.rating}
+    <li class="text-primary">
+      <b>Flavor:</b> ${cupcake.flavor}, <b>Size:</b> ${cupcake.size},
+      <b>Rating:</b> ${cupcake.rating}
     </li>
     <img class="cupcake-img" src="${cupcake.image_url}" alt="cupcake-image">
   </div>`);
@@ -96,7 +97,7 @@ async function deleteCupcake(evt) {
   $cupcake.remove();
 }
 
-$('.cupcake-list').on('click', '.cupcake-img', deleteCupcake);
+$cupcakeList.on('click', '.cupcake-img', deleteCupcake);
 
 
 /**

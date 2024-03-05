@@ -1,11 +1,15 @@
 body {
   padding-left: 30px;
-  padding-top: 10px;
+  padding-top: 15px;
   padding-bottom: 40px;
 }
 
 .cupcake-header {
   padding-bottom: 20px;
+}
+
+.add-cupcake-form {
+  width: 50%;
 }
 
 .add-cupcake-form:hover {
@@ -25,4 +29,6 @@ body {
 
 .cupcake-list {
   padding-bottom: 20px;
+  padding-left: 0px;
+  list-style-type: none;
 }
